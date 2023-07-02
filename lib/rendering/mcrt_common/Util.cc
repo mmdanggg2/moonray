@@ -8,6 +8,7 @@
 #include <sys/syscall.h>
 
 #include <cstring>
+#include <thread>
 
 namespace moonray {
 namespace mcrt_common {
@@ -21,7 +22,7 @@ threadSleep()
 void
 threadYield()
 {
-    __TBB_Yield();
+    std::this_thread::yield();
 }
 
 void

@@ -10,7 +10,7 @@
 #include <scene_rdl2/render/logging/logging.h>
 #include <scene_rdl2/render/util/Memory.h>
 #include <tbb/enumerable_thread_specific.h>
-#include <tbb/task_scheduler_init.h>
+#include <tbb/info.h>
 
 // There are on average 3 entries added to the profiler stack for each single
 // entry on the handler stack. This heuristic is used to compute the
@@ -288,7 +288,7 @@ initTLS(const TLSInitParams &initParams)
     gPrivate.mInitParams = initParams;
 
     if (gPrivate.mInitParams.mDesiredNumTBBThreads == 0) {
-        gPrivate.mInitParams.mDesiredNumTBBThreads = tbb::task_scheduler_init::default_num_threads();
+        gPrivate.mInitParams.mDesiredNumTBBThreads = tbb::info::default_concurrency();
     }
 
     MNRY_ASSERT_REQUIRE(gPrivate.mInitParams.mDesiredNumTBBThreads);

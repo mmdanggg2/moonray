@@ -5,7 +5,6 @@
 #include "TestInterpolator.h"
 #include <moonray/rendering/mcrt_common/ThreadLocalState.h>
 #include <scene_rdl2/pdevunit/pdevunit.h>
-#include <tbb/task_scheduler_init.h>
 int
 main(int argc, char *argv[])
 {
@@ -15,7 +14,7 @@ main(int argc, char *argv[])
 
     moonray::mcrt_common::TLSInitParams initParams;
     initParams.mUnitTests = true;
-    initParams.mDesiredNumTBBThreads = tbb::task_scheduler_init::default_num_threads();
+    initParams.mDesiredNumTBBThreads = tbb::info::default_concurrency();
     initParams.mArenaBlockPool = arenaBlockPool.get();
     moonray::mcrt_common::initTLS(initParams);
 

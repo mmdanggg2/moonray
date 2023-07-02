@@ -320,7 +320,7 @@ static void runTest(const TestBsdfSettings& test, int sampleCount, ProducerArgs&
 #if defined(RUN_SINGLE_THREADED)
     const unsigned sTaskCount = 1u;
 #else
-    const unsigned sTaskCount = tbb::task_scheduler_init::default_num_threads() - 1u; // Leave one for producer
+    const unsigned sTaskCount = tbb::info::default_concurrency() - 1u; // Leave one for producer
 #endif
 
     TaskQueueType<Task> taskQueue;

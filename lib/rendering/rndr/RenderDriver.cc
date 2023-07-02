@@ -548,7 +548,7 @@ RenderDriver::RenderDriver(const TLSInitParams &initParams) :
     MNRY_ASSERT(tlsInitParams.mArenaBlockPool);
 
     if (tlsInitParams.mDesiredNumTBBThreads == 0) {
-        tlsInitParams.mDesiredNumTBBThreads = tbb::task_scheduler_init::default_num_threads();
+        tlsInitParams.mDesiredNumTBBThreads = tbb::info::default_concurrency();
     }
 
 #ifdef FORCE_SINGLE_THREADED_RENDERING

@@ -13,7 +13,7 @@
 #include <scene_rdl2/render/util/StrUtil.h>
 #include <scene_rdl2/scene/rdl2/rdl2.h>
 
-#include <tbb/task_scheduler_init.h>
+#include <tbb/info.h>
 
 #include <algorithm>
 #include <cctype>
@@ -648,7 +648,7 @@ RenderOptions::getThreads() const
     }
 
     // Last-ditch default.
-    return tbb::task_scheduler_init::default_num_threads();
+    return tbb::info::default_concurrency();
 }
 
 void
